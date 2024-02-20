@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+body {
+  background: mediumpurple;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.date-input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+/* datepicker styles */
+
+.datepicker-container {
+  position: relative;
+}
+
+.datepicker {
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  margin-top: 2px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.datepicker button {
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.days,
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 10px;
+  margin-block: 10px;
+}
+
+.days span {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.dates button {
+  color: slategray;
+  aspect-ratio: 1;
+}
+
+.dates button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dates button:hover {
+  background: rgba(119, 136, 153, 0.1);
+}
+
+.dates button.today {
+  background: rgba(147, 112, 216, 0.2);
+  color: mediumpurple;
+}
+
+.dates button.selected {
+  background: mediumpurple;
+  color: #fff;
+}
+
+.datepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.datepicker-header select,
+.datepicker-header input {
+  font-size: 14px;
+  border: 1px solid #eee;
+}
+
+.datepicker-header input {
+  max-width: 64px;
+}
+
+.datepicker-header button {
+  color: slategray;
+}
+
+.datepicker-header button:hover {
+  color: mediumpurple;
+}
+
+.datepicker-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.datepicker-footer button {
+  background: rgba(119, 136, 153, 0.1);
+  padding: 3px 10px;
+}
+
+.datepicker-footer button.apply {
+  background: mediumpurple;
+  color: #fff;
+}

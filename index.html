@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Datepicker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <div class="datepicker-container">
+      <input type="text" class="date-input" placeholder="Select date" />
+
+      <div class="datepicker" hidden>
+        <!-- .datepicker-header -->
+        <div class="datepicker-header">
+          <button class="prev">Prev</button>
+
+          <div>
+            <select class="month-input">
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <input type="number" class="year-input" />
+          </div>
+
+          <button class="next">Next</button>
+        </div>
+        <!-- /.datepicker-header -->
+
+        <!-- .days -->
+        <div class="days">
+          <span>Sun</span>
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+        </div>
+        <!-- /.days -->
+
+        <!-- .dates -->
+        <div class="dates"></div>
+        <!-- /.dates -->
+
+        <!-- .datepicker-footer -->
+        <div class="datepicker-footer">
+          <button class="cancel">Cancel</button>
+          <button class="apply">Apply</button>
+        </div>
+        <!-- /.datepicker-footer -->
+      </div>
+    </div>
+  </body>
+</html>
