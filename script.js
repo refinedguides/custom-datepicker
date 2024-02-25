@@ -95,7 +95,7 @@ const displayDates = () => {
 
   for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
     const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
-    const button = createButton(text, true);
+    const button = createButton(text, true, -1);
     dates.appendChild(button);
   }
 
@@ -117,13 +117,16 @@ const displayDates = () => {
   for (let i = firstOfNextMonth.getDay(); i < 7; i++) {
     const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
 
-    const button = createButton(text, true);
+    const button = createButton(text, true, 1);
     dates.appendChild(button);
   }
 };
 
-const createButton = (text, isDisabled = false) => {
+const createButton = (text, isDisabled = false, type = 0) => {
   const currentDate = new Date();
+
+  // determine the date to compare based on the button type
+  let comparisonDate = new Date(year, month + type, text);
 
   // check if the current button is the date today
   const isToday =
@@ -132,10 +135,7 @@ const createButton = (text, isDisabled = false) => {
     currentDate.getMonth() === month;
 
   // check if the current button is selected
-  const selected =
-    selectedDate.getDate() === text &&
-    selectedDate.getFullYear() === year &&
-    selectedDate.getMonth() === month;
+  const selected = selectedDate.getTime() === comparisonDate.getTime();
 
   const button = document.createElement("button");
   button.textContent = text;
