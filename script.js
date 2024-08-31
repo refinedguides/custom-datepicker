@@ -140,7 +140,7 @@ const createButton = (text, isDisabled = false, type = 0) => {
   const button = document.createElement("button");
   button.textContent = text;
   button.disabled = isDisabled;
-  button.classList.toggle("today", isToday);
+  if(!button.disabled) button.classList.toggle("today", isToday);
   button.classList.toggle("selected", selected);
   return button;
 };
