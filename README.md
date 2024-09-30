@@ -13,3 +13,9 @@ A custom-built datepicker showcasing date manipulation and calendar generation.
 ### Screenshot
 
 ![Custom Datepicker](https://raw.githubusercontent.com/refinedguides/custom-datepicker/main/screenshot.png)
+
+### Support Me
+
+If you'd like to support me, consider buying me a coffee. Thanks!
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/refinedguides)
