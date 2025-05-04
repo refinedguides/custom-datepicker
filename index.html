@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Datepicker</title>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="script.js"></script>
+    <script defer src="script.js"></script>
     <!-- social links for refinedguides.com -->
     <script
       src="https://refinedguides.com/assets/social.js?linkColor=%23fff&textColor=%32000"
@@ -36,7 +36,7 @@
               <option>November</option>
               <option>December</option>
             </select>
-            <input type="number" class="year-input" />
+            <input type="number" class="year-input" min="1900" max="2100" />
           </div>
 
           <button class="next">Next</button>

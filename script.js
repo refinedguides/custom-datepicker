@@ -22,6 +22,14 @@ cancelBtn.addEventListener("click", () => {
   datepicker.hidden = true;
 });
 
+// close datepicker on outside click
+document.addEventListener("click", (e) => {
+  const datepickerContainer = datepicker.parentNode;
+  if (!datepickerContainer.contains(e.target)) {
+    datepicker.hidden = true;
+  }
+});
+
 // handle apply button click event
 applyBtn.addEventListener("click", () => {
   // set the selected date to date input
@@ -57,7 +65,9 @@ monthInput.addEventListener("change", () => {
 
 // handle year input change event
 yearInput.addEventListener("change", () => {
-  year = yearInput.value;
+  const newYear = parseInt(yearInput.value, 10) || new Date().getFullYear();
+  year = Math.min(2100, Math.max(1900, newYear));
+  yearInput.value = year;
   displayDates();
 });
 
@@ -94,17 +104,20 @@ const displayDates = () => {
   const lastOfPrevMonth = new Date(year, month, 0);
 
   for (let i = 0; i <= lastOfPrevMonth.getDay(); i++) {
+    // if the last day is Saturday don't show the leading dates
+    if (lastOfPrevMonth.getDay() === 6) break;
+
     const text = lastOfPrevMonth.getDate() - lastOfPrevMonth.getDay() + i;
-    const button = createButton(text, true, -1);
+    const button = createButton(text, true);
     dates.appendChild(button);
   }
 
   //* display the current month
 
   // get the last date of the month
-  const lastOfMOnth = new Date(year, month + 1, 0);
+  const lastOfMonth = new Date(year, month + 1, 0);
 
-  for (let i = 1; i <= lastOfMOnth.getDate(); i++) {
+  for (let i = 1; i <= lastOfMonth.getDate(); i++) {
     const button = createButton(i, false);
     button.addEventListener("click", handleDateClick);
     dates.appendChild(button);
@@ -115,33 +128,27 @@ const displayDates = () => {
   const firstOfNextMonth = new Date(year, month + 1, 1);
 
   for (let i = firstOfNextMonth.getDay(); i < 7; i++) {
-    const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
+    // if the first day starts on Sunday don't show the trailing dates
+    if (firstOfNextMonth.getDay() === 0) break;
 
-    const button = createButton(text, true, 1);
+    const text = firstOfNextMonth.getDate() - firstOfNextMonth.getDay() + i;
+    const button = createButton(text, true);
     dates.appendChild(button);
   }
 };
 
-const createButton = (text, isDisabled = false, type = 0) => {
-  const currentDate = new Date();
-
-  // determine the date to compare based on the button type
-  let comparisonDate = new Date(year, month + type, text);
-
-  // check if the current button is the date today
-  const isToday =
-    currentDate.getDate() === text &&
-    currentDate.getFullYear() === year &&
-    currentDate.getMonth() === month;
-
-  // check if the current button is selected
-  const selected = selectedDate.getTime() === comparisonDate.getTime();
-
+const createButton = (text, isDisabled = false) => {
   const button = document.createElement("button");
   button.textContent = text;
   button.disabled = isDisabled;
-  button.classList.toggle("today", isToday && !isDisabled);
-  button.classList.toggle("selected", selected);
+  if (!isDisabled) {
+    const buttonDate = new Date(year, month, text).toDateString();
+    const today = buttonDate === new Date().toDateString();
+    const selected = buttonDate === selectedDate.toDateString();
+
+    button.classList.toggle("today", today);
+    button.classList.toggle("selected", selected);
+  }
   return button;
 };
 
